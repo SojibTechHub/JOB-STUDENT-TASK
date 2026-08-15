@@ -1,0 +1,48 @@
+﻿# --- Dependencies ---
+node_modules/
+.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# --- Build Output ---
+/build
+/dist
+/.next/
+/out/
+.turbo
+
+# --- Environment ---
+.env
+.env.*
+!.env.example
+
+# --- Logs ---
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# --- Testing ---
+coverage/
+.nyc_output/
+
+# --- IDE & Editor ---
+.vscode/settings.json
+.idea/
+*.suo
+*.swp
+*.swo
+
+# --- OS ---
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+
+# --- Misc ---
+.cache/
+tmp/
+temp/
+*.tmp
+*.bak
+*.pid
