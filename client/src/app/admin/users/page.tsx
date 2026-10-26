@@ -87,7 +87,7 @@ export default function AdminUsersPage() {
                     {!user.isActive && <Badge variant="destructive">Suspended</Badge>}
                   </div>
                   <p className="truncate text-sm text-muted-foreground">
-                    {user.email} Â· Joined {formatDate(user.createdAt)}
+                    {user.email} • Joined {formatDate(user.createdAt)}
                   </p>
                 </div>
               </div>

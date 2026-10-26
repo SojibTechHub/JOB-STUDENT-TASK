@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
-import { BarChart3, BookOpen, TrendingUp } from "lucide-react";
+import { BarChart3, BookOpen, TrendingUp, Sparkles } from "lucide-react";
 
 import { StudentDashboard } from "@/components/layout/student-dashboard";
 import { PageHeader } from "@/components/shared/page-header";
@@ -29,50 +29,59 @@ export default function ProgressPage() {
   const completedCount = enrollments.filter((e) => e.completed).length;
 
   return (
-    <StudentDashboard headerTitle="Progress">
-      <PageHeader title="Learning Progress" description="Track how far you've come in each course.">
-        <Button asChild variant="outline">
+    <StudentDashboard headerTitle="Learning Progress">
+      <PageHeader
+        title="Learning Progress"
+        description="Track how far you've come in each course and celebrate your achievements."
+      >
+        <Button asChild variant="outline" size="sm">
           <Link href="/courses">
-            <BookOpen className="h-4 w-4" />
+            <BookOpen className="h-4 w-4 mr-2" />
             Browse courses
           </Link>
         </Button>
       </PageHeader>
 
       {isLoading ? (
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-3">
           {Array.from({ length: 3 }).map((_, i) => (
-            <Skeleton key={i} className="h-32 w-full rounded-xl" />
+            <Skeleton key={i} className="h-28 w-full rounded-xl" />
           ))}
         </div>
       ) : (
         <>
-          <div className="grid gap-6 md:grid-cols-3">
-            <Card>
+          <div className="grid gap-4 sm:grid-cols-3">
+            <Card className="hover:shadow-md transition-shadow">
               <CardContent className="p-5">
                 <div className="flex items-center justify-between">
-                  <p className="text-sm text-muted-foreground">Average completion</p>
-                  <BarChart3 className="h-4 w-4 text-primary" />
+                  <p className="text-sm font-medium text-muted-foreground">Average completion</p>
+                  <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                    <BarChart3 className="h-4 w-4" />
+                  </div>
                 </div>
-                <p className="mt-2 text-3xl font-bold">{average}%</p>
+                <p className="mt-2 text-3xl font-bold tracking-tight">{average}%</p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="hover:shadow-md transition-shadow">
               <CardContent className="p-5">
                 <div className="flex items-center justify-between">
-                  <p className="text-sm text-muted-foreground">Courses completed</p>
-                  <TrendingUp className="h-4 w-4 text-success" />
+                  <p className="text-sm font-medium text-muted-foreground">Courses completed</p>
+                  <div className="h-8 w-8 rounded-lg bg-success/10 flex items-center justify-center text-success">
+                    <TrendingUp className="h-4 w-4" />
+                  </div>
                 </div>
-                <p className="mt-2 text-3xl font-bold">{completedCount}</p>
+                <p className="mt-2 text-3xl font-bold tracking-tight">{completedCount}</p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="hover:shadow-md transition-shadow">
               <CardContent className="p-5">
                 <div className="flex items-center justify-between">
-                  <p className="text-sm text-muted-foreground">Courses in progress</p>
-                  <BookOpen className="h-4 w-4 text-info" />
+                  <p className="text-sm font-medium text-muted-foreground">Courses in progress</p>
+                  <div className="h-8 w-8 rounded-lg bg-info/10 flex items-center justify-center text-info">
+                    <BookOpen className="h-4 w-4" />
+                  </div>
                 </div>
-                <p className="mt-2 text-3xl font-bold">{enrollments.length - completedCount}</p>
+                <p className="mt-2 text-3xl font-bold tracking-tight">{enrollments.length - completedCount}</p>
               </CardContent>
             </Card>
           </div>
@@ -80,9 +89,17 @@ export default function ProgressPage() {
           {enrollments.length === 0 ? (
             <div className="mt-6">
               <EmptyState
-                icon={<BarChart3 className="h-7 w-7" />}
+                icon={<BarChart3 className="h-7 w-7 text-primary" />}
                 title="No courses yet"
-                description="Enroll in a course to start tracking your progress."
+                description="Enroll in a course to start tracking your progress, building skills, and earning verified certificates."
+                action={
+                  <Button asChild size="sm">
+                    <Link href="/courses">
+                      <Sparkles className="h-4 w-4 mr-2" />
+                      Browse Courses
+                    </Link>
+                  </Button>
+                }
               />
             </div>
           ) : (

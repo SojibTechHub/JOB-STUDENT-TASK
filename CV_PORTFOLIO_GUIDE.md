@@ -1,4 +1,4 @@
-# 🎯 SkillForge — 10/10 CV & Portfolio Presentation Guide
+﻿# 🎯 SkillForge — 10/10 CV & Portfolio Presentation Guide
 
 This guide gives you ready-made **CV bullet points**, **System Design talking points**, and **Interview Q&A answers** to score a **10/10** when showcasing this project on your Resume/CV and in technical interviews.
 
@@ -65,3 +65,4 @@ Choose the role you are applying for and copy these bullets directly into your C
 - **100% TypeScript** type safety across frontend and backend
 - **Sub-100ms API Latency** with MongoDB indexing and React Query caching
 - **Dockerized Architecture** with 1-command startup via `docker-compose up`
+

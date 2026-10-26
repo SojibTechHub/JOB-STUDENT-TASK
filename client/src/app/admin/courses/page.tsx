@@ -74,7 +74,7 @@ export default function AdminCoursesPage() {
                       {course.featured && <Badge variant="accent">Featured</Badge>}
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      {course.category || "â€”"} Â· {course.level || "â€”"} Â· {course.studentsEnrolled ?? 0} enrolled Â· Created {formatDate(course.createdAt)}
+                      {course.category || "â€”"} • {course.level || "â€”"} • {course.studentsEnrolled ?? 0} enrolled • Created {formatDate(course.createdAt)}
                     </p>
                   </div>
                 </div>

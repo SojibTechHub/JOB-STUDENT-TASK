@@ -12,9 +12,11 @@ import {
   Play,
   Sparkles,
   TrendingUp,
+  UserCircle2,
 } from "lucide-react";
 
 import { StudentDashboard } from "@/components/layout/student-dashboard";
+import { PageHeader } from "@/components/shared/page-header";
 import { StatsCard } from "@/components/shared/stats-card";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -61,14 +63,33 @@ export default function DashboardPage() {
   const continueCourse = enrollments.find((e) => !e.completed);
   const nextInterview = applications.find((a) => a.status === "Interview");
 
+  const studentName = user?.name ? user.name.split(" ")[0] : "Student";
+
   return (
     <StudentDashboard headerTitle="Dashboard">
-      <div className="flex items-center gap-2">
-        <h2 className="text-2xl font-bold tracking-tight">Welcome back, {user?.name?.split(" ")[0]} 👋</h2>
-      </div>
-      <p className="text-sm text-muted-foreground">Here&apos;s what&apos;s happening with your career journey.</p>
+      <PageHeader
+        title={`Welcome back, ${studentName} 👋`}
+        description="Here's what's happening with your career journey."
+      >
+        <div className="flex items-center gap-2">
+          {user?._id && (
+            <Button asChild variant="outline" size="sm">
+              <Link href={`/u/${user._id}`}>
+                <UserCircle2 className="h-4 w-4 mr-1.5" />
+                Public Portfolio
+              </Link>
+            </Button>
+          )}
+          <Button asChild size="sm">
+            <Link href="/jobs">
+              <Briefcase className="h-4 w-4 mr-1.5" />
+              Explore Jobs
+            </Link>
+          </Button>
+        </div>
+      </PageHeader>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         <StatsCard label="Courses" value={enrollments.length} icon={BookOpen} hint="In progress & completed" />
         <StatsCard label="Projects" value="3" icon={FolderGit2} hint="Published projects" accent="success" />
         <StatsCard label="Applications" value={applications.length} icon={Briefcase} hint={`${applications.filter((a) => a.status === "Shortlisted").length} shortlisted`} accent="info" />
@@ -86,7 +107,7 @@ export default function DashboardPage() {
               </h3>
               <Button variant="ghost" size="sm" asChild>
                 <Link href="/dashboard/courses">
-                  All courses <ArrowRight className="h-4 w-4" />
+                  All courses <ArrowRight className="h-4 w-4 ml-1" />
                 </Link>
               </Button>
             </div>
@@ -95,9 +116,16 @@ export default function DashboardPage() {
               <Skeleton className="h-40 w-full rounded-xl" />
             ) : !continueCourse ? (
               <EmptyState
-                title="No courses yet"
-                description="Enroll in a course to start learning."
-                action={<Button asChild size="sm"><Link href="/courses">Browse courses</Link></Button>}
+                title="No courses enrolled yet"
+                description="Enroll in a course to start learning and track your progress."
+                action={
+                  <Button asChild size="sm">
+                    <Link href="/courses">
+                      <BookOpen className="h-4 w-4 mr-1.5" />
+                      Browse courses
+                    </Link>
+                  </Button>
+                }
               />
             ) : (
               <Link
@@ -122,7 +150,7 @@ export default function DashboardPage() {
                     </div>
                   </div>
                   <Button size="sm" variant="gradient" className="shrink-0">
-                    <Play className="h-4 w-4" />
+                    <Play className="h-4 w-4 mr-1.5" />
                     Continue
                   </Button>
                 </div>
@@ -134,7 +162,7 @@ export default function DashboardPage() {
               <h4 className="mb-3 text-sm font-semibold">Application Status</h4>
               {applications.length === 0 ? (
                 <p className="text-sm text-muted-foreground">
-                  Apply to jobs to track your application progress.
+                  Apply to jobs to track your application progress in real time.
                 </p>
               ) : (
                 <div className="flex items-center gap-2">
@@ -210,7 +238,7 @@ export default function DashboardPage() {
                       {new Date(nextInterview.interview.scheduledAt).toLocaleString()}
                     </p>
                     <p className="text-sm text-muted-foreground">
-                      {nextInterview.interview.type} interview · {nextInterview.interview.durationMinutes} min
+                      {nextInterview.interview.type} interview • {nextInterview.interview.durationMinutes} min
                     </p>
                     {nextInterview.interview.meetingLink && (
                       <Button size="sm" variant="outline" asChild>
@@ -236,7 +264,7 @@ export default function DashboardPage() {
           </h3>
           <Button variant="ghost" size="sm" asChild>
             <Link href="/jobs">
-              View all <ArrowRight className="h-4 w-4" />
+              View all <ArrowRight className="h-4 w-4 ml-1" />
             </Link>
           </Button>
         </div>
@@ -250,7 +278,7 @@ export default function DashboardPage() {
           <EmptyState
             icon={<Briefcase className="h-7 w-7" />}
             title="No recommended jobs"
-            description="Complete more courses to get better job recommendations."
+            description="Complete more courses to get tailored job recommendations."
           />
         )}
       </section>

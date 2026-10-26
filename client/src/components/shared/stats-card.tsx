@@ -13,25 +13,25 @@ interface StatsCardProps {
 }
 
 const ACCENTS: Record<string, string> = {
-  primary: "bg-primary/10 text-primary",
-  success: "bg-success/10 text-success",
-  warning: "bg-warning/10 text-warning",
-  info: "bg-info/10 text-info",
-  destructive: "bg-destructive/10 text-destructive",
+  primary: "bg-primary/10 text-primary border-primary/20",
+  success: "bg-success/10 text-success border-success/20",
+  warning: "bg-warning/10 text-warning border-warning/20",
+  info: "bg-info/10 text-info border-info/20",
+  destructive: "bg-destructive/10 text-destructive border-destructive/20",
 };
 
 export function StatsCard({ label, value, icon: Icon, hint, accent = "primary", className }: StatsCardProps) {
   return (
-    <Card className={cn("p-5 transition-shadow hover:shadow-md", className)}>
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <p className="text-sm text-muted-foreground">{label}</p>
-          <p className="mt-1 text-2xl font-bold tracking-tight">{value}</p>
-          {hint && <p className="mt-1 text-xs text-muted-foreground">{hint}</p>}
+    <Card className={cn("p-3.5 sm:p-5 transition-all duration-200 hover:shadow-md hover:border-primary/30", className)}>
+      <div className="flex items-start justify-between gap-2 sm:gap-3">
+        <div className="min-w-0 flex-1">
+          <p className="text-xs sm:text-sm font-medium text-muted-foreground truncate">{label}</p>
+          <p className="mt-1 text-xl sm:text-2xl font-bold tracking-tight">{value}</p>
+          {hint && <p className="mt-1 text-[11px] sm:text-xs text-muted-foreground truncate">{hint}</p>}
         </div>
         {Icon && (
-          <div className={cn("flex h-10 w-10 shrink-0 items-center justify-center rounded-lg", ACCENTS[accent])}>
-            <Icon className="h-5 w-5" />
+          <div className={cn("flex h-8 w-8 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-lg sm:rounded-xl border", ACCENTS[accent])}>
+            <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
           </div>
         )}
       </div>

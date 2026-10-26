@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *));
+@variant dark (&:where(.dark, .dark *));
 
 :root {
   --radius: 0.625rem;
@@ -48,7 +48,7 @@
   --secondary: oklch(0.26 0.025 260);
   --secondary-foreground: oklch(0.93 0.01 264);
   --muted: oklch(0.25 0.02 260);
-  --muted-foreground: oklch(0.66 0.02 264);
+  --muted-foreground: oklch(0.72 0.02 264);
   --accent: oklch(0.32 0.08 294);
   --accent-foreground: oklch(0.93 0.01 264);
   --destructive: oklch(0.704 0.191 22.216);
@@ -59,8 +59,8 @@
   --warning-foreground: oklch(0.28 0.08 60);
   --info: oklch(0.65 0.18 262);
   --info-foreground: oklch(0.16 0.02 264);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 12%);
+  --border: oklch(1 0 0 / 14%);
+  --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.65 0.2 277);
   --chart-1: oklch(0.65 0.2 277);
   --chart-2: oklch(0.7 0.15 152);
